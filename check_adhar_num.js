@@ -5,9 +5,9 @@
 let adharNumber = ''
 
 for (let i = 0; i < 12; i++) {
-    adharNumber += Math.floor(Math.random() * 10); // Generate a random digit (0-9) and append it to the string
+    adharNumber = adharNumber + Math.floor(Math.random() * 10); // Generate a random digit (0-9) and append it to the string
 }
-adharNumberDigit= parseInt(adharNumber) // Convert the string to an integer (optional, depending on use case)
+let adharNumberDigit= parseInt(adharNumber) // Convert the string to an integer (optional, depending on use case)
 console.log(adharNumberDigit) // prints a randomly generated 12-digit Aadhar number
 console.log(typeof adharNumberDigit) // prints the type of the generated Aadhar number (should be "number")
 
