@@ -1,0 +1,357 @@
+Q] Remove All Adjacent Duplicates in String
+
+logical questions 
+
+ // Q1: Rotate array to the right by a given number
+function rotateright(arr, num) {
+  for (let i = 0; i < num; i++) {
+    let ele = arr.pop();
+    arr.unshift(ele);
+  }
+  return arr;
+}
+console.log(rotateright([1, 2, 3, 4, 5], 2));
+
+// Q2: Validate PAN number format
+let pannumber = "ABCDE1234F";
+let str = /[A-Za-z]{5}[0-9]{4}[A-Za-z]{1}/i.test(pannumber);
+console.log(str);
+
+// Q3: Find the occurrence of a character appearing a specific number of times
+function occ(str, num) {
+  let stri = str.split("");
+  let obj = {};
+  for (let word of stri) {
+    obj[word] = (obj[word] || 0) + 1;
+  }
+  for (let key in obj) {
+    if (obj[key] == num) {
+      console.log(key);
+    }
+  }
+}
+occ("siddhantii", 3);
+
+// Q4: Find pairs in an array that sum up to a target value
+function findpair(aarr, target) {
+  let pair = [];
+  for (let i = 0; i < aarr.length; i++) {
+    for (let j = i + 1; j < aarr.length; j++) {
+      if (aarr[i] + aarr[j] === target) {
+        pair.push([aarr[i], aarr[j]]);
+      }
+    }
+  }
+  return pair;
+}
+console.log(findpair([1, 2, 3, 4, 5, 6], 3));
+
+// Q5: Check if a number is prime
+function checkprime(num) {
+  if (num < 2) return false;
+  for (let i = 2; i <= Math.sqrt(num); i++) {
+    if (num % i === 0) return false;
+  }
+  return true;
+}
+console.log(checkprime(13));
+
+// Q6: Generate a random Aadhaar number
+function generate_adhar() {
+  let num1 = Math.floor(Math.random() * (10000 - 1000) + 1000);
+  let num2 = Math.floor(Math.random() * (10000 - 1000) + 1000);
+  let num3 = Math.floor(Math.random() * (10000 - 1000) + 1000);
+  console.log(`${num1} ${num2} ${num3}`);
+}
+generate_adhar();
+
+// Q7: Check if an array is sorted
+function isSorted(arr) {
+  for (let i = 0; i < arr.length - 1; i++) {
+    if (arr[i] >= arr[i + 1]) return false;
+  }
+  return true;
+}
+console.log(isSorted([1, 2, 3, 4, 7]));
+
+// Q8: Find the missing number in an array
+function missingNumber(arr) {
+  let n = arr.length + 1;
+  let total = (n * (n + 1)) / 2;
+  let sum = arr.reduce((acc, val) => acc + val, 0);
+  return total - sum;
+}
+console.log(missingNumber([1, 2, 3, 5, 6]));
+
+// Q9: Find the largest number in a string
+function greatestNumInStr(string) {
+  let ss = string.match(/\d+/gi).map(Number);
+  console.log(Math.max(...ss));
+}
+greatestNumInStr("si0dd8hna9t10");
+
+// Q10: Count occurrences of each word in a string
+let sentence = "my name is siddhant and siddhant age is 26";
+let words = sentence.split(" ");
+let wordCount = {};
+for (let word of words) {
+  wordCount[word] = (wordCount[word] || 0) + 1;
+}
+console.log(wordCount);
+
+// Q11: Merge two sorted arrays
+let arr1 = [1, 6, 7];
+let arr2 = [2, 5, 8];
+let merged = arr1.concat(arr2).sort((a, b) => a - b);
+console.log(merged);
+
+// Q12: Join the number and get the output ex if [1,2,3]  and added 1 output should be [1,2,4]
+function joinnumber(arr, num) {
+  let str = arr.join("");
+  let num1 = +str;
+  let sum = String(num1 + num);
+  let newarr = sum.split("");
+  console.log(newarr);
+}
+
+joinnumber([1, 2, 9], 1); //[ '1', '3', '0' ]
+joinnumber([9, 9, 9], 1); //[ '1', '0', '0', '0' ]
+
+// Q13: sort all the even numbers to leftside and odd number to right side of given array
+// let arr =[0,2,0,3,0,7,0,9,0]
+function sortevenandodd(arr) {
+  let odd = arr.filter((el) => {
+    return el % 2 !== 0;
+  });
+  let even = arr.filter((el) => {
+    return el % 2 === 0;
+  });
+  let sorteven = even.sort((a, b) => a - b);
+  let finalarr = sorteven.concat(odd);
+  console.log(finalarr);
+}
+sortevenandodd([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+sortevenandodd([0, 2, 0, 3, 0, 7, 0, 9, 0]);
+
+//Q14: in the given string revesere the string while keeping position of space same
+// ex input abc de f
+// output   fed cb a
+
+let strw = "abc de f";
+let ccc = strw.split("");
+let ar1 = [];
+let index = [];
+for (let i = 0; i < ccc.length; i++) {
+  if (ccc[i] === " ") {
+    index.push(i);
+  }
+  if (ccc[i] === " ") {
+    continue;
+  } else {
+    ar1.push(ccc[i]);
+  }
+}
+let rev2 = ar1.reverse();
+console.log(rev2);
+console.log(index);
+rev2.splice(index[0], 0, " ");
+rev2.splice(index[1], 0, " ");
+let sss = rev2.join("");
+console.log(sss);
+
+//-----------------------------------------------------------------------------------------------
+
+//Q15: find the valid parantersis in the given string
+//let str = '{([])}' //valid
+//let str = '[{(}]' //invalid
+// {([)]} //
+function isvalid(str) {
+  let arr = [];
+  let obj = {
+    ")": "(",
+    "}": "{",
+    "]": "[",
+  };
+
+  for (let char of str) {
+    if (char === "(" || char === "{" || char === "[") {
+      arr.push(char); // pushes the opening in array
+    } else if (char === ")" || char === "}" || char === "]") {
+      if (arr.length === 0 || arr.pop() !== obj[char]) {
+        return false;
+      }
+    }
+  }
+  return arr.length === 0;
+}
+
+console.log(isvalid("({[]})")); // true
+console.log(isvalid("[{(}]")); // false
+console.log(isvalid("({})")); // true
+console.log(isvalid("()")); // true
+
+//------------------------------------------------------------------------------------------
+
+//Q16: find the first and last position of given array
+//[1,2,3,4,2,5,2,6,7,2,9,2,10] // 2 //-----------[1,11]
+
+function firstandlast(arr, target, position) {
+  let rr = [];
+  for (let i = 0; i <= arr.length; i++) {
+    if (arr[i] === target) {
+      rr.push(i);
+    }
+  }
+  console.log(rr[position - 1]);
+}
+firstandlast([1, 2, 3, 4, 2, 5, 2, 6, 7, 2, 9, 2, 10], 2);
+
+function fl(arr, target) {
+  let rr = [];
+  let first = arr.indexOf(target);
+  let last = arr.lastIndexOf(target);
+  rr.push(first);
+  rr.push(last);
+  console.log(rr);
+}
+fl([1, 2, 3, 4, 2, 5, 2, 6, 7, 2, 9, 2, 10], 2);
+
+//----------------------------------------------------
+//Q17: find the most repeated value in the given array
+//[1,2,3,2,4,2,5,2,6,3,7,3,8,2,9,2,10]
+
+function mostrepeat(arr) {
+  let obj = {};
+  for (let num of arr) {
+    obj[num] = (obj[num] || 0) + 1;
+  }
+  console.log(obj);
+  let maxvalueinobj = Object.values(obj);
+  let maxvalue = Math.max(...maxvalueinobj);
+  for (let xx in obj) {
+    if (obj[xx] == maxvalue) console.log(xx);
+  }
+}
+mostrepeat([1, 2, 3, 2, 4, 2, 5, 2, 6, 3, 7, 3, 8, 2, 9, 2, 10]);
+
+mostrepeat([1, 2, 3, 2, 4, 3, 5]);
+
+mostrepeat([1, "a", 3, "a", 4, "b", 5]);
+
+//------------------------------------------------------------------
+
+//Q18 find the longest common prefixx  -- repeated prefix more than 1
+
+//["flower","flow","flight","dog","hello"] // fl
+
+function prefix(arr) {
+  let pre = [];
+  for (let i = 0; i < arr.length; i++) {
+    let pp = arr[i].substring(0, 2);
+    pre.push(pp);
+  }
+  console.log(pre);
+  let obj = {};
+  for (let num of pre) {
+    obj[num] = (obj[num] || 0) + 1;
+  }
+  console.log(obj);
+  let maxvalueinobj = Object.values(obj);
+  let maxvalue = Math.max(...maxvalueinobj);
+
+  for (let xx in obj) {
+    if (obj[xx] == maxvalue) console.log(xx);
+  }
+}
+
+prefix(["flower", "flow", "flight", "dog", "hello"]); //fl
+
+//
+
+function prefix_way2(arr) {
+  let pre = [];
+  for (let i = 0; i < arr.length; i++) {
+    let pp = arr[i].substring(0, 2);
+    pre.push(pp);
+  }
+  console.log(pre);
+
+  for (let i = 0; i < pre.length; i++) {
+    if (pre[i] == pre[i + 1]) {
+      i++;
+      console.log(pre[i]);
+    }
+  }
+}
+
+prefix_way2(["flower", "flow", "flight", "dog", "hello"]); //fl
+
+// replace the string charcter incrementally
+// ex tomorrow  should be like  --> t#m##rr###w
+
+let tomstr = "Tomorrow";
+let arrtom = tomstr.split("");
+let count = 0;
+
+for (let i = 0; i < arrtom.length; i++) {
+  if (arrtom[i] == "o") {
+    count++;
+    arrtom[i] = "#".repeat(count);
+  }
+}
+arrtom.join("");
+
+console.log(arrtom.join(""));
+
+//add the numbers in string
+let str = "27 Nov 2025".toLowerCase();
+let digit = str.replace(/\D/g, "");
+console.log(digit);
+let strdigit = digit.split("");
+console.log(strdigit);
+let totalcount = 0;
+for (let i = 0; i < strdigit.length; i++) {
+  let c = Number(strdigit[i]);
+  totalcount += c;
+}
+console.log(totalcount);
+console.log("way 2 ");
+let numberadd = 0;
+for (let i = 0; i < str.length; i++) {
+  let ch = str[i];
+  if (!isNaN(ch) && ch !== " ") {
+    numberadd += Number(ch);
+  }
+}
+console.log(numberadd);
+
+//19] change every second word to uppercase
+
+//input = My Name is Sayali Sagar
+//Output = mY nAme iS sAyali sAgar
+let neww = "My Name is Sayali Sagar";
+let words_ = neww.split(" ");
+let result = [];
+
+for (let i = 0; i < words_.length; i++) {
+  let word = words_[i];
+
+  if (word.length >= 2) {
+    let first =
+      word[0] === word[0].toUpperCase()
+        ? word[0].toLowerCase()
+        : word[0].toUpperCase();
+
+    let second =
+      word[1] === word[1].toUpperCase()
+        ? word[1].toLowerCase()
+        : word[1].toUpperCase();
+
+    result.push(first + second + word.slice(2));
+  } else {
+    result.push(word);
+  }
+}
+
+console.log(result.join(" "));
+// Output: mY nAme iS sAyali sAgar
