@@ -66,3 +66,15 @@ console.log(lastElements.concat(firstElements)); // [4,5,1,2,3]
 
 
 
+// more simple way
+
+
+function RottetArray(arr ,n){
+    
+    for(let i =0 ; i<n; i++){
+    // I remove the last element using pop() and insert it at the beginning using unshift()    
+        arr.unshift(arr.pop())
+    }
+    return arr
+}
+console.log(RottetArray([1,2,3,4,5],2))
