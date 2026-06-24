@@ -12,6 +12,18 @@ console.log(adharNumberDigit) // prints a randomly generated 12-digit Aadhar num
 console.log(typeof adharNumberDigit) // prints the type of the generated Aadhar number (should be "number")
 
 //***************************check Aadhar number format***************************/
+//  way 1 
+
+function generate_adhar() {
+  let num1 = Math.floor(Math.random() * (10000 - 1000) + 1000);
+  let num2 = Math.floor(Math.random() * (10000 - 1000) + 1000);
+  let num3 = Math.floor(Math.random() * (10000 - 1000) + 1000);
+  console.log(`${num1} ${num2} ${num3}`);
+}
+generate_adhar();
+
+
+
 
 // Check if the Aadhar number is valid (12 digits)
 let regex =/^[0-9]{12}$/  //regex For 12 checking 12 number digit
